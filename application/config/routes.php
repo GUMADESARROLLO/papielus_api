@@ -3,7 +3,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
 $route['default_controller'] = 'servicio_controllers';
-$route['sku'] = 'Servicio_controllers/update_sku';
+$route['sku/(any:)/(num:)'] = 'Servicio_controllers/update_sku/$1/$2'; // primer valor tipo de operacion, segundo valor numero de factura
+// $route['sku/(num:)'] = 'Servicio_controllers/update_sku/$1';
+// $route['rest_sku/(num:)'] = 'Servicio_controllers/substract_sku/$1';
 
 
 
