@@ -26,11 +26,57 @@ class servicios_model extends CI_Model
         $articulosRemotos                   = $this->obtenerArticulosRemotos();
         $ObtItemsExistentesEnRemotoYLocal      = $this->compararItemsExistentesEnRemotoYLocal($lineasDeFactura, $articulosRemotos);
         print_r($ObtItemsExistentesEnRemotoYLocal);
+
+
+        if ($operacion == 'suma_sku') {
+            $skuMayorACantLocal = true;
+            foreach ($ObtItemsExistentesEnRemotoYLocal as $key) {
+                $retVal = 0;
+                $retVal = floatval($key["SKU_Local"]) + floatval($key["SKU_REMOTO"]); 
+
+                $Sku_update_batch[] = array(
+                    'post_id'   => $key["ID_POST"],
+                    'meta_value' => number_format($retVal,0)
+                );
+
+
+                $Sku_update_batch_wp_wc_product[] = array(
+                    'product_id' => $key["ID_POST"],
+                    'stock_quantity' => number_format($retVal,0)
+                );
+                
+            }
+        }else if($operacion == 'resta_sku'){
+            foreach ($ObtItemsExistentesEnRemotoYLocal as $key) {
+                $retVal = 0;
+                if (floatval($key["SKU_REMOTO"]) > floatval($key["SKU_Local"])) {
+                    $skuMayorACantLocal = true;
+                    $retVal = floatval($key["SKU_REMOTO"]) - floatval($key["SKU_Local"]); 
+
+                    $Sku_update_batch[] = array(
+                        'post_id'   => $key["ID_POST"],
+                        'meta_value' => number_format($retVal,0)
+                    );
+
+
+                    $Sku_update_batch_wp_wc_product[] = array(
+                        'product_id' => $key["ID_POST"],
+                        'stock_quantity' => number_format($retVal,0)
+                    );
+                }else{
+                    $skuMayorACantLocal = false;
+                    break;
+                }
+              
+                
+            }
+        }else{
+            echo 'La operacion selecionada no se puede realizar';
+        }
         
        
         // switch($operacion) {
         //     case 'suma_sku':
-        //     $skuMayorACantLocal = true;
         //         foreach ($ObtItemsExistentesEnRemotoYLocal as $key) {
         //             $retVal = 0;
         //             $retVal = floatval($key["SKU_LOCAL"]) + floatval($key["SKU_REMOTO"]); 
@@ -77,17 +123,17 @@ class servicios_model extends CI_Model
         // }
        
         
-        // if ($skuMayorACantLocal == true) {
-        //     $this->db->where('meta_key','_sku');
-        //     $this->db->update_batch('wp_postmeta',$Sku_update_batch,'post_id');
+        if ($skuMayorACantLocal == true) {
+            $this->db->where('meta_key','_sku');
+            $this->db->update_batch('wp_postmeta',$Sku_update_batch,'post_id');
 
-        //     echo '<br>';
+            echo '<br>';
 
-        //     $this->db->update_batch('wp_wc_product_meta_lookup',$Sku_update_batch_wp_wc_product,'product_id');
-        //     
-        // }else{
-        //     echo 'No se puede realizar la operacion,  la cantidad de producto en uno o mas items de factura es mayor a la cantidad de sku en servidor remoto';
-        // }
+            $this->db->update_batch('wp_wc_product_meta_lookup',$Sku_update_batch_wp_wc_product,'product_id');
+            
+        }else{
+            echo 'No se puede realizar la operacion,  la cantidad de producto en uno o mas items de factura es mayor a la cantidad de sku en servidor remoto';
+        }
         
 
     }
