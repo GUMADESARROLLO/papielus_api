@@ -25,7 +25,7 @@ class servicios_model extends CI_Model
         $lineasDeFactura                    = $this->obtenerLineasDeFacturas($numFact);
         $articulosRemotos                   = $this->obtenerArticulosRemotos();
         $ObtItemsExistentesEnRemotoYLocal      = $this->compararItemsExistentesEnRemotoYLocal($lineasDeFactura, $articulosRemotos);
-        print_r($ObtItemsExistentesEnRemotoYLocal);
+        //print_r($ObtItemsExistentesEnRemotoYLocal);
 
 
         if ($operacion == 'suma_sku') {
