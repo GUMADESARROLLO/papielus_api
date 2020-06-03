@@ -10,22 +10,13 @@ class servicios_model extends CI_Model
 
         $db_asterisk = $this->load->database('db_remota', TRUE);
 
-        $queryDetFact                       ="";
-        $Decimal                            = 4;
         $Sku_update_batch                   = array();
-        $Cadena_sku_codigo                  = array();
         $articulosRemotos                   = array();
         $lineasDeFactura                    = array();
         $Sku_update_batch_wp_wc_product     = array();
-        $ObtItemsExistentesEnRemotoYLocal   = array();
 
         $lineasDeFactura                    = $this->obtenerLineasDeFacturas($numFact);
         $articulosRemotos                   = $this->obtenerArticulosRemotos($db_asterisk);
-
-        print_r($lineasDeFactura);
-        echo '<br><br>';
-        print_r($articulosRemotos);
-        echo '<br><br>';
         
         foreach ($lineasDeFactura as $key){
             $Codigo             = $key['ARTICULO'];
@@ -55,7 +46,7 @@ class servicios_model extends CI_Model
         }
 
         $db_asterisk->where('meta_key','_sku');
-       $db_asterisk->update_batch('wp_postmeta',$Sku_update_batch,'post_id');
+        $db_asterisk->update_batch('wp_postmeta',$Sku_update_batch,'post_id');
 
         echo '<br>';
 
@@ -65,15 +56,12 @@ class servicios_model extends CI_Model
 
 // Obtener articulos por numero de factura en base local de datos Produccion
     private function obtenerLineasDeFacturas($numFact){
-        $Decimal = 4;
-        $j = 0;
      
         $queryDetFact = "SELECT ARTICULO, DESCRIPCION, SUM(CANTIDAD) as CANTIDAD FROM PRODUN_HOLDINGS_FACTURAS where FACTURA = ".$numFact."  GROUP BY ARTICULO, DESCRIPCION ";        
         $query_lineas_facturado = $this->sqlsrv->fetchArray($queryDetFact,SQLSRV_FETCH_ASSOC);
 
         return $query_lineas_facturado;
     }
-
 
     // Obtenre articulos por numero de Codigo en base remota
     private function obtenerArticulosRemotos($db_asterisk){
