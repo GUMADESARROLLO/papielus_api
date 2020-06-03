@@ -6,8 +6,9 @@ class servicios_model extends CI_Model
         $this->load->database();
     }
 
-
     public function update_sku($operacion, $numFact) { //operacion = resta_sku o suma_sku
+
+        $db_asterisk = $this->load->database('db_remota', TRUE);
 
         $queryDetFact                       ="";
         $Decimal                            = 4;
@@ -18,57 +19,49 @@ class servicios_model extends CI_Model
         $Sku_update_batch_wp_wc_product     = array();
         $ObtItemsExistentesEnRemotoYLocal   = array();
 
-      /* //variables usadas para verificar si el sku de un item remot es menor al la cantidad restada del item en factura local 
-        $skuMayorACantLocal                = true;*/
-        
         $lineasDeFactura                    = $this->obtenerLineasDeFacturas($numFact);
-        $articulosRemotos                   = $this->obtenerArticulosRemotos();
-       // $ObtItemsExistentesEnRemotoYLocal   = $this->compararItemsExistentesEnRemotoYLocal($lineasDeFactura, $articulosRemotos);
+        $articulosRemotos                   = $this->obtenerArticulosRemotos($db_asterisk);
 
         print_r($lineasDeFactura);
         echo '<br><br>';
         print_r($articulosRemotos);
         echo '<br><br>';
-
         
-            foreach ($lineasDeFactura as $key){
-                $Codigo             = $key['ARTICULO'];
-                $ExistenciaLocal    = $key['CANTIDAD'];
-                $found_key          = array_search($key['ARTICULO'], array_column($articulosRemotos, 'Codigo'));
-                $ID_Post            = $articulosRemotos[$found_key]['ID'];
-                
-                if($operacion == 'suma_sku'){
-                    $resVal = floatval($articulosRemotos[$found_key]['stock_quantity']) + floatval($ExistenciaLocal);
-                } else if($operacion == 'resta_sku'){
-                     $resVal = floatval($articulosRemotos[$found_key]['stock_quantity']) - floatval($ExistenciaLocal);
-                } 
+        foreach ($lineasDeFactura as $key){
+            $Codigo             = $key['ARTICULO'];
+            $ExistenciaLocal    = $key['CANTIDAD'];
+            $found_key          = array_search($key['ARTICULO'], array_column($articulosRemotos, 'Codigo'));
+            $ID_Post            = $articulosRemotos[$found_key]['ID'];
+            
+            if($operacion == 'suma_sku'){
+                $resVal = floatval($articulosRemotos[$found_key]['stock_quantity']) + floatval($ExistenciaLocal);
+            } else if($operacion == 'resta_sku'){
+                 $resVal = floatval($articulosRemotos[$found_key]['stock_quantity']) - floatval($ExistenciaLocal);
+            } 
 
-               print('POST ID:'.$ID_Post.' <br> ARTICULO:'.$Codigo.' <br>Existencia Local: '.$ExistenciaLocal.' <br> Existencia remota: '.$articulosRemotos[$found_key]['stock_quantity'].'<br> TOTAL_SUMA_RESTA: '.$resVal.'<br><br>');
+           print('POST ID:'.$ID_Post.' <br> ARTICULO:'.$Codigo.' <br>Existencia Local: '.$ExistenciaLocal.' <br> Existencia remota: '.$articulosRemotos[$found_key]['stock_quantity'].'<br> TOTAL_SUMA_RESTA: '.$resVal.'<br><br>');
 
-                $Sku_update_batch[] = array(
-                    'post_id'   => $ID_Post,
-                    'meta_value' => number_format($resVal,0)
-                );
+            $Sku_update_batch[] = array(
+                'post_id'   => $ID_Post,
+                'meta_value' => number_format($resVal,0)
+            );
 
 
-                $Sku_update_batch_wp_wc_product[] = array(
-                    'product_id' => $ID_Post,
-                    'stock_quantity' => $resVal
-                );
+            $Sku_update_batch_wp_wc_product[] = array(
+                'product_id' => $ID_Post,
+                'stock_quantity' => $resVal
+            );
 
-            }
+        }
 
-            $this->db->where('meta_key','_sku');
-            $this->db->update_batch('wp_postmeta',$Sku_update_batch,'post_id');
+        $db_asterisk->where('meta_key','_sku');
+       $db_asterisk->update_batch('wp_postmeta',$Sku_update_batch,'post_id');
 
-            echo '<br>';
+        echo '<br>';
 
-            $this->db->update_batch('wp_wc_product_meta_lookup',$Sku_update_batch_wp_wc_product,'product_id');
+        $db_asterisk->update_batch('wp_wc_product_meta_lookup',$Sku_update_batch_wp_wc_product,'product_id');
        
-        
-
     }
-
 
 // Obtener articulos por numero de factura en base local de datos Produccion
     private function obtenerLineasDeFacturas($numFact){
@@ -83,15 +76,13 @@ class servicios_model extends CI_Model
 
 
     // Obtenre articulos por numero de Codigo en base remota
-    private function obtenerArticulosRemotos(){
- 
-        $queryRemota = $this->db->get('view_info_sku');
+    private function obtenerArticulosRemotos($db_asterisk){
+        
+        $queryRemota = $db_asterisk->get('view_info_sku');
         $articulosRemotos = $queryRemota->result_array();// convertir stdClass a array
        
         return $articulosRemotos;
-
     }
-
 }?>
 
 
