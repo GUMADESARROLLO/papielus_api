@@ -5,17 +5,208 @@
  Source Server Type    : MySQL
  Source Server Version : 100113
  Source Host           : localhost:3306
- Source Schema         : papielusdb
+ Source Schema         : produn_holdings
 
  Target Server Type    : MySQL
  Target Server Version : 100113
  File Encoding         : 65001
 
- Date: 28/05/2020 12:42:33
+ Date: 03/06/2020 10:36:47
 */
 
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
+
+-- ----------------------------
+-- Table structure for log_factura_cargadas
+-- ----------------------------
+DROP TABLE IF EXISTS `log_factura_cargadas`;
+CREATE TABLE `log_factura_cargadas`  (
+  `Factura` varchar(10) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `Fecha` datetime(0) NULL DEFAULT NULL,
+  `Usuario` varchar(10) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `Acction` varchar(10) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `Stado` int(1) NULL DEFAULT NULL
+) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of log_factura_cargadas
+-- ----------------------------
+INSERT INTO `log_factura_cargadas` VALUES ('2226', '2020-06-02 12:37:44', '1', 'UP', 0);
+INSERT INTO `log_factura_cargadas` VALUES ('2226', '2020-06-02 12:38:42', '1', 'DOWN', 0);
+INSERT INTO `log_factura_cargadas` VALUES ('2226', '2020-06-02 12:39:01', '1', 'UP', 0);
+INSERT INTO `log_factura_cargadas` VALUES ('2225', '2020-06-02 12:42:10', '1', 'UP', 0);
+INSERT INTO `log_factura_cargadas` VALUES ('2225', '2020-06-02 12:42:27', '1', 'DOWN', 1);
+INSERT INTO `log_factura_cargadas` VALUES ('2226', '2020-06-02 12:42:34', '1', 'DOWN', 1);
+INSERT INTO `log_factura_cargadas` VALUES ('2224', '2020-06-02 12:45:36', '1', 'UP', 0);
+INSERT INTO `log_factura_cargadas` VALUES ('2224', '2020-06-02 12:45:58', '1', 'DOWN', 1);
+
+-- ----------------------------
+-- Table structure for log_sesion
+-- ----------------------------
+DROP TABLE IF EXISTS `log_sesion`;
+CREATE TABLE `log_sesion`  (
+  `id_log` int(6) NOT NULL AUTO_INCREMENT,
+  `idUser` int(6) NOT NULL,
+  `fecha` datetime(0) NULL DEFAULT NULL,
+  PRIMARY KEY (`id_log`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 200 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of log_sesion
+-- ----------------------------
+INSERT INTO `log_sesion` VALUES (75, 1, '2019-05-22 08:53:11');
+INSERT INTO `log_sesion` VALUES (76, 1, '2019-05-22 15:34:07');
+INSERT INTO `log_sesion` VALUES (77, 1, '2019-05-23 08:40:08');
+INSERT INTO `log_sesion` VALUES (78, 1, '2019-05-24 09:34:01');
+INSERT INTO `log_sesion` VALUES (79, 1, '2019-05-27 08:19:26');
+INSERT INTO `log_sesion` VALUES (80, 1, '2019-05-27 13:53:35');
+INSERT INTO `log_sesion` VALUES (81, 1, '2019-05-28 09:18:56');
+INSERT INTO `log_sesion` VALUES (82, 1, '2019-05-28 15:01:28');
+INSERT INTO `log_sesion` VALUES (83, 1, '2019-05-28 15:54:02');
+INSERT INTO `log_sesion` VALUES (84, 1, '2019-05-28 16:00:59');
+INSERT INTO `log_sesion` VALUES (85, 1, '2019-05-28 16:10:43');
+INSERT INTO `log_sesion` VALUES (86, 1, '2019-05-29 08:06:45');
+INSERT INTO `log_sesion` VALUES (87, 1, '2019-05-29 14:34:34');
+INSERT INTO `log_sesion` VALUES (88, 1, '2019-05-29 14:47:30');
+INSERT INTO `log_sesion` VALUES (89, 1, '2019-05-31 08:25:45');
+INSERT INTO `log_sesion` VALUES (90, 1, '2019-05-31 14:35:39');
+INSERT INTO `log_sesion` VALUES (91, 1, '2019-05-31 15:52:07');
+INSERT INTO `log_sesion` VALUES (92, 1, '2019-06-03 07:51:02');
+INSERT INTO `log_sesion` VALUES (93, 1, '2019-06-03 16:05:00');
+INSERT INTO `log_sesion` VALUES (94, 1, '2019-06-04 08:33:02');
+INSERT INTO `log_sesion` VALUES (95, 1, '2019-06-04 14:46:55');
+INSERT INTO `log_sesion` VALUES (96, 1, '2019-06-06 08:49:50');
+INSERT INTO `log_sesion` VALUES (97, 1, '2019-06-06 11:58:00');
+INSERT INTO `log_sesion` VALUES (98, 1, '2019-06-06 12:10:46');
+INSERT INTO `log_sesion` VALUES (99, 1, '2019-06-06 14:56:47');
+INSERT INTO `log_sesion` VALUES (100, 1, '2019-06-07 07:40:03');
+INSERT INTO `log_sesion` VALUES (101, 1, '2019-06-07 11:39:53');
+INSERT INTO `log_sesion` VALUES (102, 1, '2019-06-10 07:45:22');
+INSERT INTO `log_sesion` VALUES (103, 1, '2019-06-10 14:41:17');
+INSERT INTO `log_sesion` VALUES (104, 1, '2019-06-10 14:51:43');
+INSERT INTO `log_sesion` VALUES (105, 1, '2019-06-10 14:52:53');
+INSERT INTO `log_sesion` VALUES (106, 1, '2019-06-10 16:18:41');
+INSERT INTO `log_sesion` VALUES (107, 1, '2019-06-11 10:47:32');
+INSERT INTO `log_sesion` VALUES (108, 1, '2019-06-12 08:47:57');
+INSERT INTO `log_sesion` VALUES (109, 1, '2019-06-12 11:13:30');
+INSERT INTO `log_sesion` VALUES (110, 1, '2019-06-12 14:48:17');
+INSERT INTO `log_sesion` VALUES (111, 1, '2019-06-13 07:50:33');
+INSERT INTO `log_sesion` VALUES (112, 7, '2019-06-13 08:13:16');
+INSERT INTO `log_sesion` VALUES (113, 7, '2019-06-13 08:16:33');
+INSERT INTO `log_sesion` VALUES (114, 1, '2019-06-13 08:19:01');
+INSERT INTO `log_sesion` VALUES (115, 1, '2019-06-13 08:36:08');
+INSERT INTO `log_sesion` VALUES (116, 7, '2019-06-13 08:36:59');
+INSERT INTO `log_sesion` VALUES (117, 1, '2019-06-13 08:37:58');
+INSERT INTO `log_sesion` VALUES (118, 7, '2019-06-13 08:38:16');
+INSERT INTO `log_sesion` VALUES (119, 1, '2019-06-13 08:38:24');
+INSERT INTO `log_sesion` VALUES (120, 1, '2019-06-13 08:38:44');
+INSERT INTO `log_sesion` VALUES (121, 7, '2019-06-13 08:55:57');
+INSERT INTO `log_sesion` VALUES (122, 7, '2019-06-13 08:56:12');
+INSERT INTO `log_sesion` VALUES (123, 1, '2019-06-13 08:57:24');
+INSERT INTO `log_sesion` VALUES (124, 1, '2019-06-13 10:26:16');
+INSERT INTO `log_sesion` VALUES (125, 1, '2019-06-13 14:42:58');
+INSERT INTO `log_sesion` VALUES (126, 1, '2019-06-13 15:49:40');
+INSERT INTO `log_sesion` VALUES (127, 1, '2019-06-17 05:32:14');
+INSERT INTO `log_sesion` VALUES (128, 1, '2019-08-26 09:16:21');
+INSERT INTO `log_sesion` VALUES (129, 1, '2019-08-26 09:27:33');
+INSERT INTO `log_sesion` VALUES (130, 1, '2019-11-29 16:16:24');
+INSERT INTO `log_sesion` VALUES (131, 1, '2019-11-29 16:19:46');
+INSERT INTO `log_sesion` VALUES (132, 1, '2019-12-05 09:29:44');
+INSERT INTO `log_sesion` VALUES (133, 1, '2019-12-05 10:12:41');
+INSERT INTO `log_sesion` VALUES (134, 1, '2019-12-05 10:20:33');
+INSERT INTO `log_sesion` VALUES (135, 1, '2019-12-05 15:41:01');
+INSERT INTO `log_sesion` VALUES (136, 1, '2019-12-10 12:16:41');
+INSERT INTO `log_sesion` VALUES (137, 1, '2019-12-10 13:43:18');
+INSERT INTO `log_sesion` VALUES (138, 7, '2019-12-10 13:43:45');
+INSERT INTO `log_sesion` VALUES (139, 1, '2019-12-10 13:44:08');
+INSERT INTO `log_sesion` VALUES (140, 7, '2019-12-10 13:44:44');
+INSERT INTO `log_sesion` VALUES (141, 7, '2019-12-10 13:49:38');
+INSERT INTO `log_sesion` VALUES (142, 1, '2020-01-10 13:54:02');
+INSERT INTO `log_sesion` VALUES (143, 1, '2020-01-10 13:55:57');
+INSERT INTO `log_sesion` VALUES (144, 1, '2020-01-10 14:19:16');
+INSERT INTO `log_sesion` VALUES (145, 1, '2020-01-21 14:01:26');
+INSERT INTO `log_sesion` VALUES (146, 1, '2020-01-21 14:02:39');
+INSERT INTO `log_sesion` VALUES (147, 1, '2020-01-21 17:03:04');
+INSERT INTO `log_sesion` VALUES (148, 1, '2020-02-04 14:54:29');
+INSERT INTO `log_sesion` VALUES (149, 1, '2020-02-04 15:07:10');
+INSERT INTO `log_sesion` VALUES (150, 1, '2020-02-05 09:06:27');
+INSERT INTO `log_sesion` VALUES (151, 1, '2020-02-10 12:06:52');
+INSERT INTO `log_sesion` VALUES (152, 1, '2020-02-10 15:44:39');
+INSERT INTO `log_sesion` VALUES (153, 1, '2020-03-09 16:17:08');
+INSERT INTO `log_sesion` VALUES (154, 1, '2020-03-10 10:33:45');
+INSERT INTO `log_sesion` VALUES (155, 1, '2020-03-10 11:14:23');
+INSERT INTO `log_sesion` VALUES (156, 1, '2020-03-10 11:23:04');
+INSERT INTO `log_sesion` VALUES (157, 7, '2020-03-10 11:27:09');
+INSERT INTO `log_sesion` VALUES (158, 7, '2020-03-12 08:24:17');
+INSERT INTO `log_sesion` VALUES (159, 1, '2020-03-20 16:52:59');
+INSERT INTO `log_sesion` VALUES (160, 1, '2020-03-23 12:36:15');
+INSERT INTO `log_sesion` VALUES (161, 1, '2020-03-24 10:27:20');
+INSERT INTO `log_sesion` VALUES (162, 1, '2020-03-24 15:09:42');
+INSERT INTO `log_sesion` VALUES (163, 1, '2020-03-24 15:33:33');
+INSERT INTO `log_sesion` VALUES (164, 1, '2020-03-24 15:56:35');
+INSERT INTO `log_sesion` VALUES (165, 1, '2020-03-24 17:02:34');
+INSERT INTO `log_sesion` VALUES (166, 1, '2020-03-24 17:26:58');
+INSERT INTO `log_sesion` VALUES (167, 1, '2020-04-03 11:47:13');
+INSERT INTO `log_sesion` VALUES (168, 1, '2020-04-04 10:32:44');
+INSERT INTO `log_sesion` VALUES (169, 1, '2020-05-19 15:24:19');
+INSERT INTO `log_sesion` VALUES (170, 1, '2020-05-19 15:24:25');
+INSERT INTO `log_sesion` VALUES (171, 1, '2020-05-19 15:24:53');
+INSERT INTO `log_sesion` VALUES (172, 1, '2020-05-19 15:27:59');
+INSERT INTO `log_sesion` VALUES (173, 1, '2020-05-19 15:38:33');
+INSERT INTO `log_sesion` VALUES (174, 1, '2020-05-19 19:42:03');
+INSERT INTO `log_sesion` VALUES (175, 1, '2020-05-20 08:37:34');
+INSERT INTO `log_sesion` VALUES (176, 7, '2020-05-20 09:23:04');
+INSERT INTO `log_sesion` VALUES (177, 7, '2020-05-20 15:40:26');
+INSERT INTO `log_sesion` VALUES (178, 1, '2020-05-22 15:11:21');
+INSERT INTO `log_sesion` VALUES (179, 7, '2020-05-22 15:11:50');
+INSERT INTO `log_sesion` VALUES (180, 1, '2020-05-22 15:13:01');
+INSERT INTO `log_sesion` VALUES (181, 7, '2020-05-22 15:15:04');
+INSERT INTO `log_sesion` VALUES (182, 7, '2020-05-22 15:15:40');
+INSERT INTO `log_sesion` VALUES (183, 1, '2020-05-22 15:20:59');
+INSERT INTO `log_sesion` VALUES (184, 1, '2020-05-24 13:06:50');
+INSERT INTO `log_sesion` VALUES (185, 1, '2020-05-24 13:42:56');
+INSERT INTO `log_sesion` VALUES (186, 1, '2020-05-24 13:48:30');
+INSERT INTO `log_sesion` VALUES (187, 1, '2020-05-25 08:33:59');
+INSERT INTO `log_sesion` VALUES (188, 1, '2020-05-25 14:07:47');
+INSERT INTO `log_sesion` VALUES (189, 1, '2020-05-25 14:21:03');
+INSERT INTO `log_sesion` VALUES (190, 1, '2020-05-25 15:06:27');
+INSERT INTO `log_sesion` VALUES (191, 1, '2020-05-29 10:25:42');
+INSERT INTO `log_sesion` VALUES (192, 1, '2020-05-29 13:45:35');
+INSERT INTO `log_sesion` VALUES (193, 1, '2020-06-01 08:32:21');
+INSERT INTO `log_sesion` VALUES (194, 1, '2020-06-01 15:02:38');
+INSERT INTO `log_sesion` VALUES (195, 1, '2020-06-01 16:01:00');
+INSERT INTO `log_sesion` VALUES (196, 1, '2020-06-01 16:42:01');
+INSERT INTO `log_sesion` VALUES (197, 1, '2020-06-02 08:10:52');
+INSERT INTO `log_sesion` VALUES (198, 1, '2020-06-02 14:10:19');
+INSERT INTO `log_sesion` VALUES (199, 1, '2020-06-03 08:05:13');
+
+-- ----------------------------
+-- Table structure for usuarios
+-- ----------------------------
+DROP TABLE IF EXISTS `usuarios`;
+CREATE TABLE `usuarios`  (
+  `idUser` int(11) NOT NULL AUTO_INCREMENT,
+  `userName` varchar(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `password` varchar(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `nombre` varchar(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `rol` bit(1) NULL DEFAULT NULL,
+  `estado` bit(1) NULL DEFAULT NULL,
+  `created_at` timestamp(0) NULL DEFAULT NULL,
+  `updated_at` timestamp(0) NULL DEFAULT NULL,
+  `id_usuario` int(10) NULL DEFAULT NULL,
+  PRIMARY KEY (`idUser`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of usuarios
+-- ----------------------------
+INSERT INTO `usuarios` VALUES (1, 'admin', '123456', 'admin', b'0', b'1', '2019-05-23 11:22:12', '2019-05-23 11:22:12', 1);
+INSERT INTO `usuarios` VALUES (2, 'dd', '123456', 'cualquiera', b'1', b'1', '2019-05-23 11:22:12', '2019-05-23 11:22:12', 1);
+INSERT INTO `usuarios` VALUES (3, 'dd', '123456', 'cualquiera', b'1', b'0', '2019-05-23 11:22:12', '2019-06-12 03:31:05', 1);
+INSERT INTO `usuarios` VALUES (5, 'dd', '123456', 'cualquiera 454545', b'1', b'0', '2019-05-23 11:22:12', '2019-06-12 03:31:02', 1);
+INSERT INTO `usuarios` VALUES (6, 'dd', '123456', 'cualquiera 454545', b'1', b'0', '2019-05-23 11:22:12', '2019-06-12 03:31:00', 1);
+INSERT INTO `usuarios` VALUES (7, 'CM01', 'Publ1s4_2020', 'Jorge Rodríguez', b'1', b'1', '2019-06-12 11:53:53', '2020-03-10 11:21:54', 1);
 
 -- ----------------------------
 -- Table structure for wp_postmeta
@@ -444,7 +635,7 @@ INSERT INTO `wp_postmeta` VALUES (734, 259, '_virtual', '0');
 INSERT INTO `wp_postmeta` VALUES (735, 259, '_downloadable', '0');
 INSERT INTO `wp_postmeta` VALUES (736, 259, '_download_limit', '0');
 INSERT INTO `wp_postmeta` VALUES (737, 259, '_download_expiry', '0');
-INSERT INTO `wp_postmeta` VALUES (738, 259, '_stock', NULL);
+INSERT INTO `wp_postmeta` VALUES (738, 259, '_stock', '0');
 INSERT INTO `wp_postmeta` VALUES (739, 259, '_stock_status', '0');
 INSERT INTO `wp_postmeta` VALUES (740, 259, '_wc_average_rating', '0');
 INSERT INTO `wp_postmeta` VALUES (741, 259, '_wc_review_count', '0');
@@ -480,7 +671,7 @@ INSERT INTO `wp_postmeta` VALUES (795, 271, '_virtual', '0');
 INSERT INTO `wp_postmeta` VALUES (796, 271, '_downloadable', '0');
 INSERT INTO `wp_postmeta` VALUES (797, 271, '_download_limit', '0');
 INSERT INTO `wp_postmeta` VALUES (798, 271, '_download_expiry', '0');
-INSERT INTO `wp_postmeta` VALUES (799, 271, '_stock', NULL);
+INSERT INTO `wp_postmeta` VALUES (799, 271, '_stock', '0');
 INSERT INTO `wp_postmeta` VALUES (800, 271, '_stock_status', 'outofstock');
 INSERT INTO `wp_postmeta` VALUES (801, 271, '_wc_average_rating', '0');
 INSERT INTO `wp_postmeta` VALUES (802, 271, '_wc_review_count', '0');
@@ -564,7 +755,7 @@ INSERT INTO `wp_postmeta` VALUES (890, 291, '_virtual', 'no');
 INSERT INTO `wp_postmeta` VALUES (891, 291, '_downloadable', 'no');
 INSERT INTO `wp_postmeta` VALUES (892, 291, '_download_limit', '-1');
 INSERT INTO `wp_postmeta` VALUES (893, 291, '_download_expiry', '-1');
-INSERT INTO `wp_postmeta` VALUES (894, 291, '_stock', NULL);
+INSERT INTO `wp_postmeta` VALUES (894, 291, '_stock', '0');
 INSERT INTO `wp_postmeta` VALUES (895, 291, '_stock_status', 'outofstock');
 INSERT INTO `wp_postmeta` VALUES (896, 291, '_wc_average_rating', '5.00');
 INSERT INTO `wp_postmeta` VALUES (897, 291, '_wc_review_count', '1');
@@ -597,7 +788,7 @@ INSERT INTO `wp_postmeta` VALUES (923, 298, '_virtual', '0');
 INSERT INTO `wp_postmeta` VALUES (924, 298, '_downloadable', '0');
 INSERT INTO `wp_postmeta` VALUES (925, 298, '_download_limit', '0');
 INSERT INTO `wp_postmeta` VALUES (926, 298, '_download_expiry', '0');
-INSERT INTO `wp_postmeta` VALUES (927, 298, '_stock', NULL);
+INSERT INTO `wp_postmeta` VALUES (927, 298, '_stock', '0');
 INSERT INTO `wp_postmeta` VALUES (928, 298, '_stock_status', '0');
 INSERT INTO `wp_postmeta` VALUES (929, 298, '_wc_average_rating', '0');
 INSERT INTO `wp_postmeta` VALUES (930, 298, '_wc_review_count', '0');
@@ -701,7 +892,7 @@ INSERT INTO `wp_postmeta` VALUES (1066, 399, '_product_image_gallery', '407,402,
 INSERT INTO `wp_postmeta` VALUES (1067, 399, '_download_limit', '9');
 INSERT INTO `wp_postmeta` VALUES (1068, 399, '_download_expiry', '9');
 INSERT INTO `wp_postmeta` VALUES (1069, 399, '_thumbnail_id', '293');
-INSERT INTO `wp_postmeta` VALUES (1070, 399, '_stock', NULL);
+INSERT INTO `wp_postmeta` VALUES (1070, 399, '_stock', '0');
 INSERT INTO `wp_postmeta` VALUES (1071, 399, '_stock_status', '9');
 INSERT INTO `wp_postmeta` VALUES (1072, 399, '_wc_average_rating', '9');
 INSERT INTO `wp_postmeta` VALUES (1073, 399, '_wc_review_count', '9');
@@ -739,7 +930,7 @@ INSERT INTO `wp_postmeta` VALUES (1104, 408, '_product_image_gallery', '409,414,
 INSERT INTO `wp_postmeta` VALUES (1105, 408, '_download_limit', '-1');
 INSERT INTO `wp_postmeta` VALUES (1106, 408, '_download_expiry', '-1');
 INSERT INTO `wp_postmeta` VALUES (1107, 408, '_thumbnail_id', '416');
-INSERT INTO `wp_postmeta` VALUES (1108, 408, '_stock', NULL);
+INSERT INTO `wp_postmeta` VALUES (1108, 408, '_stock', '0');
 INSERT INTO `wp_postmeta` VALUES (1109, 408, '_stock_status', 'instock');
 INSERT INTO `wp_postmeta` VALUES (1110, 408, '_wc_average_rating', '5.00');
 INSERT INTO `wp_postmeta` VALUES (1111, 408, '_wc_review_count', '1');
@@ -778,7 +969,7 @@ INSERT INTO `wp_postmeta` VALUES (1143, 417, '_product_image_gallery', '419,423,
 INSERT INTO `wp_postmeta` VALUES (1144, 417, '_download_limit', '-1');
 INSERT INTO `wp_postmeta` VALUES (1145, 417, '_download_expiry', '-1');
 INSERT INTO `wp_postmeta` VALUES (1146, 417, '_thumbnail_id', '418');
-INSERT INTO `wp_postmeta` VALUES (1147, 417, '_stock', NULL);
+INSERT INTO `wp_postmeta` VALUES (1147, 417, '_stock', '0');
 INSERT INTO `wp_postmeta` VALUES (1148, 417, '_stock_status', 'outofstock');
 INSERT INTO `wp_postmeta` VALUES (1149, 417, '_wc_average_rating', '4.50');
 INSERT INTO `wp_postmeta` VALUES (1150, 417, '_wc_review_count', '2');
@@ -838,7 +1029,7 @@ INSERT INTO `wp_postmeta` VALUES (1277, 501, '_product_image_gallery', '265,423,
 INSERT INTO `wp_postmeta` VALUES (1278, 501, '_download_limit', '-1');
 INSERT INTO `wp_postmeta` VALUES (1279, 501, '_download_expiry', '-1');
 INSERT INTO `wp_postmeta` VALUES (1280, 501, '_thumbnail_id', '502');
-INSERT INTO `wp_postmeta` VALUES (1281, 501, '_stock', NULL);
+INSERT INTO `wp_postmeta` VALUES (1281, 501, '_stock', '0');
 INSERT INTO `wp_postmeta` VALUES (1282, 501, '_stock_status', 'outofstock');
 INSERT INTO `wp_postmeta` VALUES (1283, 501, '_wc_average_rating', '0');
 INSERT INTO `wp_postmeta` VALUES (1284, 501, '_wc_review_count', '0');
@@ -874,7 +1065,7 @@ INSERT INTO `wp_postmeta` VALUES (1303, 504, '_product_image_gallery', '422,423,
 INSERT INTO `wp_postmeta` VALUES (1304, 504, '_download_limit', '-1');
 INSERT INTO `wp_postmeta` VALUES (1305, 504, '_download_expiry', '-1');
 INSERT INTO `wp_postmeta` VALUES (1306, 504, '_thumbnail_id', '503');
-INSERT INTO `wp_postmeta` VALUES (1307, 504, '_stock', NULL);
+INSERT INTO `wp_postmeta` VALUES (1307, 504, '_stock', '0');
 INSERT INTO `wp_postmeta` VALUES (1308, 504, '_stock_status', 'instock');
 INSERT INTO `wp_postmeta` VALUES (1309, 504, '_wc_average_rating', '0');
 INSERT INTO `wp_postmeta` VALUES (1310, 504, '_wc_review_count', '0');
@@ -896,7 +1087,7 @@ INSERT INTO `wp_postmeta` VALUES (1325, 505, '_product_image_gallery', '508');
 INSERT INTO `wp_postmeta` VALUES (1326, 505, '_download_limit', '-1');
 INSERT INTO `wp_postmeta` VALUES (1327, 505, '_download_expiry', '-1');
 INSERT INTO `wp_postmeta` VALUES (1328, 505, '_thumbnail_id', '507');
-INSERT INTO `wp_postmeta` VALUES (1329, 505, '_stock', NULL);
+INSERT INTO `wp_postmeta` VALUES (1329, 505, '_stock', '0');
 INSERT INTO `wp_postmeta` VALUES (1330, 505, '_stock_status', 'instock');
 INSERT INTO `wp_postmeta` VALUES (1331, 505, '_wc_average_rating', '0');
 INSERT INTO `wp_postmeta` VALUES (1332, 505, '_wc_review_count', '0');
@@ -922,7 +1113,7 @@ INSERT INTO `wp_postmeta` VALUES (1353, 509, '_product_image_gallery', '300,303,
 INSERT INTO `wp_postmeta` VALUES (1354, 509, '_download_limit', '-1');
 INSERT INTO `wp_postmeta` VALUES (1355, 509, '_download_expiry', '-1');
 INSERT INTO `wp_postmeta` VALUES (1356, 509, '_thumbnail_id', '299');
-INSERT INTO `wp_postmeta` VALUES (1357, 509, '_stock', NULL);
+INSERT INTO `wp_postmeta` VALUES (1357, 509, '_stock', '0');
 INSERT INTO `wp_postmeta` VALUES (1358, 509, '_stock_status', 'outofstock');
 INSERT INTO `wp_postmeta` VALUES (1359, 509, '_wc_average_rating', '0');
 INSERT INTO `wp_postmeta` VALUES (1360, 509, '_wc_review_count', '0');
@@ -946,7 +1137,7 @@ INSERT INTO `wp_postmeta` VALUES (1377, 511, '_product_image_gallery', '303,301,
 INSERT INTO `wp_postmeta` VALUES (1378, 511, '_download_limit', '-1');
 INSERT INTO `wp_postmeta` VALUES (1379, 511, '_download_expiry', '-1');
 INSERT INTO `wp_postmeta` VALUES (1380, 511, '_thumbnail_id', '299');
-INSERT INTO `wp_postmeta` VALUES (1381, 511, '_stock', NULL);
+INSERT INTO `wp_postmeta` VALUES (1381, 511, '_stock', '0');
 INSERT INTO `wp_postmeta` VALUES (1382, 511, '_stock_status', 'outofstock');
 INSERT INTO `wp_postmeta` VALUES (1383, 511, '_wc_average_rating', '0');
 INSERT INTO `wp_postmeta` VALUES (1384, 511, '_wc_review_count', '0');
@@ -968,7 +1159,7 @@ INSERT INTO `wp_postmeta` VALUES (1399, 512, '_product_image_gallery', '287,288,
 INSERT INTO `wp_postmeta` VALUES (1400, 512, '_download_limit', '-1');
 INSERT INTO `wp_postmeta` VALUES (1401, 512, '_download_expiry', '-1');
 INSERT INTO `wp_postmeta` VALUES (1402, 512, '_thumbnail_id', '286');
-INSERT INTO `wp_postmeta` VALUES (1403, 512, '_stock', NULL);
+INSERT INTO `wp_postmeta` VALUES (1403, 512, '_stock', '0');
 INSERT INTO `wp_postmeta` VALUES (1404, 512, '_stock_status', 'outofstock');
 INSERT INTO `wp_postmeta` VALUES (1405, 512, '_wc_average_rating', '0');
 INSERT INTO `wp_postmeta` VALUES (1406, 512, '_wc_review_count', '0');
@@ -989,7 +1180,7 @@ INSERT INTO `wp_postmeta` VALUES (1420, 513, '_downloadable', 'no');
 INSERT INTO `wp_postmeta` VALUES (1421, 513, '_product_image_gallery', '289,290,396,395');
 INSERT INTO `wp_postmeta` VALUES (1422, 513, '_download_limit', '-1');
 INSERT INTO `wp_postmeta` VALUES (1423, 513, '_download_expiry', '-1');
-INSERT INTO `wp_postmeta` VALUES (1425, 513, '_stock', NULL);
+INSERT INTO `wp_postmeta` VALUES (1425, 513, '_stock', '0');
 INSERT INTO `wp_postmeta` VALUES (1426, 513, '_stock_status', 'instock');
 INSERT INTO `wp_postmeta` VALUES (1427, 513, '_wc_average_rating', '0');
 INSERT INTO `wp_postmeta` VALUES (1428, 513, '_wc_review_count', '0');
@@ -1036,7 +1227,7 @@ INSERT INTO `wp_postmeta` VALUES (1447, 515, '_product_image_gallery', '265,423,
 INSERT INTO `wp_postmeta` VALUES (1448, 515, '_download_limit', '-1');
 INSERT INTO `wp_postmeta` VALUES (1449, 515, '_download_expiry', '-1');
 INSERT INTO `wp_postmeta` VALUES (1450, 515, '_thumbnail_id', '502');
-INSERT INTO `wp_postmeta` VALUES (1451, 515, '_stock', NULL);
+INSERT INTO `wp_postmeta` VALUES (1451, 515, '_stock', '0');
 INSERT INTO `wp_postmeta` VALUES (1452, 515, '_stock_status', 'instock');
 INSERT INTO `wp_postmeta` VALUES (1453, 515, '_wc_average_rating', '0');
 INSERT INTO `wp_postmeta` VALUES (1454, 515, '_wc_review_count', '0');
@@ -1060,7 +1251,7 @@ INSERT INTO `wp_postmeta` VALUES (1471, 516, '_product_image_gallery', '262,263,
 INSERT INTO `wp_postmeta` VALUES (1472, 516, '_download_limit', '-1');
 INSERT INTO `wp_postmeta` VALUES (1473, 516, '_download_expiry', '-1');
 INSERT INTO `wp_postmeta` VALUES (1474, 516, '_thumbnail_id', '260');
-INSERT INTO `wp_postmeta` VALUES (1475, 516, '_stock', NULL);
+INSERT INTO `wp_postmeta` VALUES (1475, 516, '_stock', '0');
 INSERT INTO `wp_postmeta` VALUES (1476, 516, '_stock_status', 'outofstock');
 INSERT INTO `wp_postmeta` VALUES (1477, 516, '_wc_average_rating', '0');
 INSERT INTO `wp_postmeta` VALUES (1478, 516, '_wc_review_count', '0');
@@ -1224,7 +1415,7 @@ INSERT INTO `wp_postmeta` VALUES (1646, 533, '_product_image_gallery', '287,288,
 INSERT INTO `wp_postmeta` VALUES (1647, 533, '_download_limit', '-1');
 INSERT INTO `wp_postmeta` VALUES (1648, 533, '_download_expiry', '-1');
 INSERT INTO `wp_postmeta` VALUES (1649, 533, '_thumbnail_id', '286');
-INSERT INTO `wp_postmeta` VALUES (1650, 533, '_stock', NULL);
+INSERT INTO `wp_postmeta` VALUES (1650, 533, '_stock', '0');
 INSERT INTO `wp_postmeta` VALUES (1651, 533, '_stock_status', 'outofstock');
 INSERT INTO `wp_postmeta` VALUES (1652, 533, '_wc_average_rating', '0');
 INSERT INTO `wp_postmeta` VALUES (1653, 533, '_wc_review_count', '0');
@@ -1696,7 +1887,7 @@ INSERT INTO `wp_postmeta` VALUES (2218, 609, '_product_image_gallery', '422,421,
 INSERT INTO `wp_postmeta` VALUES (2219, 609, '_download_limit', '-1');
 INSERT INTO `wp_postmeta` VALUES (2220, 609, '_download_expiry', '-1');
 INSERT INTO `wp_postmeta` VALUES (2221, 609, '_thumbnail_id', '669');
-INSERT INTO `wp_postmeta` VALUES (2222, 609, '_stock', NULL);
+INSERT INTO `wp_postmeta` VALUES (2222, 609, '_stock', '0');
 INSERT INTO `wp_postmeta` VALUES (2223, 609, '_stock_status', 'instock');
 INSERT INTO `wp_postmeta` VALUES (2224, 609, '_wc_average_rating', '0');
 INSERT INTO `wp_postmeta` VALUES (2225, 609, '_wc_review_count', '0');
@@ -1736,7 +1927,7 @@ INSERT INTO `wp_postmeta` VALUES (2258, 610, '_product_image_gallery', '423,422,
 INSERT INTO `wp_postmeta` VALUES (2259, 610, '_download_limit', '10');
 INSERT INTO `wp_postmeta` VALUES (2260, 610, '_download_expiry', '10');
 INSERT INTO `wp_postmeta` VALUES (2261, 610, '_thumbnail_id', '418');
-INSERT INTO `wp_postmeta` VALUES (2262, 610, '_stock', NULL);
+INSERT INTO `wp_postmeta` VALUES (2262, 610, '_stock', '0');
 INSERT INTO `wp_postmeta` VALUES (2263, 610, '_stock_status', '10');
 INSERT INTO `wp_postmeta` VALUES (2264, 610, '_wc_average_rating', '10');
 INSERT INTO `wp_postmeta` VALUES (2265, 610, '_wc_review_count', '10');
@@ -1763,7 +1954,7 @@ INSERT INTO `wp_postmeta` VALUES (2284, 612, '_product_image_gallery', '423,422,
 INSERT INTO `wp_postmeta` VALUES (2285, 612, '_download_limit', '15');
 INSERT INTO `wp_postmeta` VALUES (2286, 612, '_download_expiry', '15');
 INSERT INTO `wp_postmeta` VALUES (2287, 612, '_thumbnail_id', '692');
-INSERT INTO `wp_postmeta` VALUES (2288, 612, '_stock', NULL);
+INSERT INTO `wp_postmeta` VALUES (2288, 612, '_stock', '0');
 INSERT INTO `wp_postmeta` VALUES (2289, 612, '_stock_status', '15');
 INSERT INTO `wp_postmeta` VALUES (2290, 612, '_wc_average_rating', '15');
 INSERT INTO `wp_postmeta` VALUES (2291, 612, '_wc_review_count', '15');
@@ -2559,24 +2750,24 @@ INSERT INTO `wp_postmeta` VALUES (3197, 707, 'wf_ups_selected_service', '13');
 INSERT INTO `wp_postmeta` VALUES (3198, 707, 'ups_created_shipments_xml_request_array', 'a:1:{s:0:\"\";s:5113:\"<?xml version=\"1.0\" encoding=\"UTF-8\"?><AccessRequest xml:lang=\"en-US\"><AccessLicenseNumber>7D7F3EDD18CF47F1</AccessLicenseNumber><UserId>Produn</UserId><Password>GAdmin123!</Password></AccessRequest><?xml version=\"1.0\" ?><ShipmentConfirmRequest><Request><TransactionReference><CustomerContext>707</CustomerContext><XpciVersion>1.0001</XpciVersion></TransactionReference><RequestAction>ShipConfirm</RequestAction><RequestOption>nonvalidate</RequestOption></Request><Shipment><Description>Papiel HD Toilet Paper 250 8x4 (Total Unit Pe...</Description><Shipper><Name/><AttentionName>Produn Holdings</AttentionName><PhoneNumber>13059793449</PhoneNumber><EMailAddress>info@papiel.com</EMailAddress><ShipperNumber>4392V7</ShipperNumber><Address><AddressLine1>2009 NW 79 Ave. Doral,  33172</AddressLine1><City>Miami</City><StateProvinceCode>FL</StateProvinceCode><CountryCode>US</CountryCode><PostalCode>33172</PostalCode></Address></Shipper><ShipTo><CompanyName>-</CompanyName><AttentionName>Mary Mendez</AttentionName><PhoneNumber>9105742770</PhoneNumber><EMailAddress>mendezmary7@yahoo.com</EMailAddress><Address><AddressLine1>421 Andros Drive</AddressLine1><AddressLine2/><City>Fayetteville</City><CountryCode>US</CountryCode><PostalCode>28314</PostalCode><StateProvinceCode>NC</StateProvinceCode><ResidentialAddress/></Address></ShipTo><Service><Code>13</Code><Description>wf_shipping_ups</Description></Service><ItemizedPaymentInformation><ShipmentCharge><Type>01</Type><BillShipper><AccountNumber>4392V7</AccountNumber></BillShipper></ShipmentCharge></ItemizedPaymentInformation><Package><PackagingType><Code>02</Code><Description>Package/customer supplied</Description></PackagingType><Description>Rate</Description><Dimensions><UnitOfMeasurement><Code>IN</Code></UnitOfMeasurement><Length>6.3</Length><Width>5.71</Width><Height>2.56</Height></Dimensions><PackageWeight><UnitOfMeasurement><Code>LBS</Code></UnitOfMeasurement><Weight>6.4</Weight></PackageWeight><PackageServiceOptions><InsuredValue><CurrencyCode>USD</CurrencyCode><MonetaryValue>8.34</MonetaryValue></InsuredValue></PackageServiceOptions><ReferenceNumber><Code>01</Code><Value>Papiel HD Toilet Paper 250 8x4 (...</Value></ReferenceNumber></Package><Package><PackagingType><Code>02</Code><Description>Package/customer supplied</Description></PackagingType><Description>Rate</Description><Dimensions><UnitOfMeasurement><Code>IN</Code></UnitOfMeasurement><Length>6.3</Length><Width>5.71</Width><Height>2.56</Height></Dimensions><PackageWeight><UnitOfMeasurement><Code>LBS</Code></UnitOfMeasurement><Weight>6.4</Weight></PackageWeight><PackageServiceOptions><InsuredValue><CurrencyCode>USD</CurrencyCode><MonetaryValue>8.34</MonetaryValue></InsuredValue></PackageServiceOptions><ReferenceNumber><Code>01</Code><Value>Papiel HD Toilet Paper 250 8x4 (...</Value></ReferenceNumber></Package><Package><PackagingType><Code>02</Code><Description>Package/customer supplied</Description></PackagingType><Description>Rate</Description><Dimensions><UnitOfMeasurement><Code>IN</Code></UnitOfMeasurement><Length>6.3</Length><Width>5.71</Width><Height>2.56</Height></Dimensions><PackageWeight><UnitOfMeasurement><Code>LBS</Code></UnitOfMeasurement><Weight>6.4</Weight></PackageWeight><PackageServiceOptions><InsuredValue><CurrencyCode>USD</CurrencyCode><MonetaryValue>8.34</MonetaryValue></InsuredValue></PackageServiceOptions><ReferenceNumber><Code>01</Code><Value>Papiel HD Toilet Paper 250 8x4 (...</Value></ReferenceNumber></Package><Package><PackagingType><Code>02</Code><Description>Package/customer supplied</Description></PackagingType><Description>Rate</Description><Dimensions><UnitOfMeasurement><Code>IN</Code></UnitOfMeasurement><Length>6.3</Length><Width>5.71</Width><Height>2.56</Height></Dimensions><PackageWeight><UnitOfMeasurement><Code>LBS</Code></UnitOfMeasurement><Weight>6.4</Weight></PackageWeight><PackageServiceOptions><InsuredValue><CurrencyCode>USD</CurrencyCode><MonetaryValue>8.34</MonetaryValue></InsuredValue></PackageServiceOptions><ReferenceNumber><Code>01</Code><Value>Papiel HD Toilet Paper 250 8x4 (...</Value></ReferenceNumber></Package><Package><PackagingType><Code>02</Code><Description>Package/customer supplied</Description></PackagingType><Description>Rate</Description><Dimensions><UnitOfMeasurement><Code>IN</Code></UnitOfMeasurement><Length>6.3</Length><Width>5.71</Width><Height>2.56</Height></Dimensions><PackageWeight><UnitOfMeasurement><Code>LBS</Code></UnitOfMeasurement><Weight>6.4</Weight></PackageWeight><PackageServiceOptions><InsuredValue><CurrencyCode>USD</CurrencyCode><MonetaryValue>8.34</MonetaryValue></InsuredValue></PackageServiceOptions><ReferenceNumber><Code>01</Code><Value>Papiel HD Toilet Paper 250 8x4 (...</Value></ReferenceNumber></Package><RateInformation><NegotiatedRatesIndicator/></RateInformation></Shipment><LabelSpecification><LabelPrintMethod><Code>PNG</Code></LabelPrintMethod><HTTPUserAgent>Mozilla/4.5</HTTPUserAgent><LabelStockSize><Height>4</Height><Width>6</Width></LabelStockSize><LabelImageFormat><Code>PNG</Code></LabelImageFormat></LabelSpecification></ShipmentConfirmRequest>\";}');
 INSERT INTO `wp_postmeta` VALUES (3199, 707, 'ups_created_shipments_details_array', 'a:1:{s:0:\"\";a:1:{s:14:\"ShipmentDigest\";s:0:\"\";}}');
 INSERT INTO `wp_postmeta` VALUES (3200, 259, '_sku', '0');
-INSERT INTO `wp_postmeta` VALUES (3201, 612, '_sku', '15');
+INSERT INTO `wp_postmeta` VALUES (3201, 612, '_sku', '1920');
 INSERT INTO `wp_postmeta` VALUES (3202, 610, '_sku', '0');
-INSERT INTO `wp_postmeta` VALUES (3203, 609, '_sku', '23');
-INSERT INTO `wp_postmeta` VALUES (3204, 533, '_sku', '2');
+INSERT INTO `wp_postmeta` VALUES (3203, 609, '_sku', '0');
+INSERT INTO `wp_postmeta` VALUES (3204, 533, '_sku', '0');
 INSERT INTO `wp_postmeta` VALUES (3205, 516, '_sku', '0');
-INSERT INTO `wp_postmeta` VALUES (3206, 515, '_sku', '68');
-INSERT INTO `wp_postmeta` VALUES (3207, 513, '_sku', '1');
+INSERT INTO `wp_postmeta` VALUES (3206, 515, '_sku', '0');
+INSERT INTO `wp_postmeta` VALUES (3207, 513, '_sku', '0');
 INSERT INTO `wp_postmeta` VALUES (3208, 512, '_sku', '0');
 INSERT INTO `wp_postmeta` VALUES (3209, 511, '_sku', '0');
 INSERT INTO `wp_postmeta` VALUES (3210, 509, '_sku', '0');
-INSERT INTO `wp_postmeta` VALUES (3211, 505, '_sku', '4');
-INSERT INTO `wp_postmeta` VALUES (3212, 504, '_sku', '3');
+INSERT INTO `wp_postmeta` VALUES (3211, 505, '_sku', '0');
+INSERT INTO `wp_postmeta` VALUES (3212, 504, '_sku', '0');
 INSERT INTO `wp_postmeta` VALUES (3213, 501, '_sku', '0');
-INSERT INTO `wp_postmeta` VALUES (3214, 417, '_sku', '1');
+INSERT INTO `wp_postmeta` VALUES (3214, 417, '_sku', '0');
 INSERT INTO `wp_postmeta` VALUES (3215, 408, '_sku', '0');
-INSERT INTO `wp_postmeta` VALUES (3216, 399, '_sku', '9');
+INSERT INTO `wp_postmeta` VALUES (3216, 399, '_sku', '0');
 INSERT INTO `wp_postmeta` VALUES (3217, 298, '_sku', '0');
-INSERT INTO `wp_postmeta` VALUES (3218, 291, '_sku', '8');
+INSERT INTO `wp_postmeta` VALUES (3218, 291, '_sku', '0');
 INSERT INTO `wp_postmeta` VALUES (3219, 271, '_sku', '0');
 
 -- ----------------------------
@@ -3170,27 +3361,27 @@ CREATE TABLE `wp_wc_product_meta_lookup`  (
 -- ----------------------------
 -- Records of wp_wc_product_meta_lookup
 -- ----------------------------
-INSERT INTO `wp_wc_product_meta_lookup` VALUES (259, '0', 0, 0, 14.9500, 14.9500, 1, NULL, '0', 0, 0.00, 0, '0', '0');
+INSERT INTO `wp_wc_product_meta_lookup` VALUES (259, '0', 0, 0, 14.9500, 14.9500, 1, 0, '0', 0, 0.00, 0, '0', '0');
 INSERT INTO `wp_wc_product_meta_lookup` VALUES (267, NULL, 0, 0, 1.5000, 1.5000, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL);
-INSERT INTO `wp_wc_product_meta_lookup` VALUES (271, '0', 0, 0, 16.6300, 16.6300, 1, NULL, 'outofstock', 0, 0.00, 0, '0', '0');
+INSERT INTO `wp_wc_product_meta_lookup` VALUES (271, '0', 0, 0, 16.6300, 16.6300, 1, 0, 'outofstock', 0, 0.00, 0, '0', '0');
 INSERT INTO `wp_wc_product_meta_lookup` VALUES (285, NULL, 0, 0, 798.6000, 798.6000, 0, NULL, 'outofstock', 2, 5.00, 0, 'taxable', '');
-INSERT INTO `wp_wc_product_meta_lookup` VALUES (291, '8', 0, 0, 10.7600, 10.7600, 1, NULL, '0', 0, 0.00, 0, '0', '0');
-INSERT INTO `wp_wc_product_meta_lookup` VALUES (298, '0', 0, 0, 12.5600, 12.5600, 1, NULL, '0', 0, 0.00, 0, '0', '0');
-INSERT INTO `wp_wc_product_meta_lookup` VALUES (399, '9', 0, 0, 13.4600, 13.4600, 1, NULL, '9', 9, 9.00, 9, '9', '9');
-INSERT INTO `wp_wc_product_meta_lookup` VALUES (408, '0', 0, 0, 10.7100, 10.7100, 1, NULL, 'instock', 1, 5.00, 0, 'taxable', '');
-INSERT INTO `wp_wc_product_meta_lookup` VALUES (417, '1', 0, 0, 14.6600, 14.6600, 1, NULL, 'outofstock', 2, 4.50, 0, 'taxable', '');
-INSERT INTO `wp_wc_product_meta_lookup` VALUES (501, '0', 0, 0, 11.6600, 11.6600, 1, NULL, 'outofstock', 0, 0.00, 0, 'taxable', '');
-INSERT INTO `wp_wc_product_meta_lookup` VALUES (504, '3', 0, 0, 8.3400, 8.3400, 1, NULL, 'instock', 0, 0.00, 6, 'taxable', '');
-INSERT INTO `wp_wc_product_meta_lookup` VALUES (505, '4', 0, 0, 10.0800, 10.0800, 1, NULL, 'instock', 0, 0.00, 0, 'taxable', '');
-INSERT INTO `wp_wc_product_meta_lookup` VALUES (509, '0', 0, 0, 10.1300, 10.1300, 1, NULL, 'outofstock', 0, 0.00, 0, 'taxable', '');
-INSERT INTO `wp_wc_product_meta_lookup` VALUES (511, '0', 0, 0, 8.5500, 8.5500, 1, NULL, 'outofstock', 0, 0.00, 0, 'taxable', '');
-INSERT INTO `wp_wc_product_meta_lookup` VALUES (512, '0', 0, 0, 27.9400, 27.9400, 1, NULL, 'outofstock', 0, 0.00, 0, 'taxable', '');
-INSERT INTO `wp_wc_product_meta_lookup` VALUES (513, '1', 0, 0, 10.0800, 10.0800, 1, NULL, 'instock', 0, 0.00, 0, 'taxable', '');
-INSERT INTO `wp_wc_product_meta_lookup` VALUES (515, '68', 0, 0, 23.3100, 23.3100, 1, NULL, 'instock', 0, 0.00, 0, 'taxable', '');
-INSERT INTO `wp_wc_product_meta_lookup` VALUES (516, '0', 0, 0, 29.9000, 29.9000, 1, NULL, 'outofstock', 0, 0.00, 0, 'taxable', '');
+INSERT INTO `wp_wc_product_meta_lookup` VALUES (291, '0', 0, 0, 10.7600, 10.7600, 1, 0, '0', 0, 0.00, 0, '0', '0');
+INSERT INTO `wp_wc_product_meta_lookup` VALUES (298, '0', 0, 0, 12.5600, 12.5600, 1, 0, '0', 0, 0.00, 0, '0', '0');
+INSERT INTO `wp_wc_product_meta_lookup` VALUES (399, '0', 0, 0, 13.4600, 13.4600, 1, 0, '9', 9, 9.00, 9, '9', '9');
+INSERT INTO `wp_wc_product_meta_lookup` VALUES (408, '0', 0, 0, 10.7100, 10.7100, 1, 0, 'instock', 1, 5.00, 0, 'taxable', '');
+INSERT INTO `wp_wc_product_meta_lookup` VALUES (417, '0', 0, 0, 14.6600, 14.6600, 1, 0, 'outofstock', 2, 4.50, 0, 'taxable', '');
+INSERT INTO `wp_wc_product_meta_lookup` VALUES (501, '0', 0, 0, 11.6600, 11.6600, 1, 0, 'outofstock', 0, 0.00, 0, 'taxable', '');
+INSERT INTO `wp_wc_product_meta_lookup` VALUES (504, '0', 0, 0, 8.3400, 8.3400, 1, 0, 'instock', 0, 0.00, 6, 'taxable', '');
+INSERT INTO `wp_wc_product_meta_lookup` VALUES (505, '0', 0, 0, 10.0800, 10.0800, 1, 0, 'instock', 0, 0.00, 0, 'taxable', '');
+INSERT INTO `wp_wc_product_meta_lookup` VALUES (509, '0', 0, 0, 10.1300, 10.1300, 1, 0, 'outofstock', 0, 0.00, 0, 'taxable', '');
+INSERT INTO `wp_wc_product_meta_lookup` VALUES (511, '0', 0, 0, 8.5500, 8.5500, 1, 0, 'outofstock', 0, 0.00, 0, 'taxable', '');
+INSERT INTO `wp_wc_product_meta_lookup` VALUES (512, '0', 0, 0, 27.9400, 27.9400, 1, 0, 'outofstock', 0, 0.00, 0, 'taxable', '');
+INSERT INTO `wp_wc_product_meta_lookup` VALUES (513, '0', 0, 0, 10.0800, 10.0800, 1, 0, 'instock', 0, 0.00, 0, 'taxable', '');
+INSERT INTO `wp_wc_product_meta_lookup` VALUES (515, '0', 0, 0, 23.3100, 23.3100, 1, 0, 'instock', 0, 0.00, 0, 'taxable', '');
+INSERT INTO `wp_wc_product_meta_lookup` VALUES (516, '0', 0, 0, 29.9000, 29.9000, 1, 0, 'outofstock', 0, 0.00, 0, 'taxable', '');
 INSERT INTO `wp_wc_product_meta_lookup` VALUES (523, NULL, 0, 0, 864.0000, 864.0000, 0, NULL, 'instock', 0, 0.00, 0, 'taxable', '');
 INSERT INTO `wp_wc_product_meta_lookup` VALUES (532, NULL, 0, 0, 960.0000, 960.0000, 0, NULL, 'outofstock', 0, 0.00, 0, 'taxable', '');
-INSERT INTO `wp_wc_product_meta_lookup` VALUES (533, '2', 0, 0, 13.9700, 13.9700, 1, NULL, 'outofstock', 0, 0.00, 0, 'taxable', '');
+INSERT INTO `wp_wc_product_meta_lookup` VALUES (533, '0', 0, 0, 13.9700, 13.9700, 1, 0, 'outofstock', 0, 0.00, 0, 'taxable', '');
 INSERT INTO `wp_wc_product_meta_lookup` VALUES (534, NULL, 0, 0, 1062.4000, 1062.4000, 0, NULL, 'instock', 0, 0.00, 0, 'taxable', '');
 INSERT INTO `wp_wc_product_meta_lookup` VALUES (536, NULL, 0, 0, 990.4000, 990.4000, 0, NULL, 'instock', 0, 0.00, 0, 'taxable', '');
 INSERT INTO `wp_wc_product_meta_lookup` VALUES (537, NULL, 0, 0, 812.0000, 812.0000, 0, NULL, 'instock', 0, 0.00, 0, 'taxable', '');
@@ -3207,15 +3398,25 @@ INSERT INTO `wp_wc_product_meta_lookup` VALUES (550, NULL, 0, 0, 864.0000, 864.0
 INSERT INTO `wp_wc_product_meta_lookup` VALUES (551, NULL, 0, 0, 896.0000, 896.0000, 0, NULL, 'outofstock', 0, 0.00, 0, 'taxable', '');
 INSERT INTO `wp_wc_product_meta_lookup` VALUES (552, NULL, 0, 0, 916.4800, 916.4800, 0, NULL, 'instock', 0, 0.00, 0, 'taxable', '');
 INSERT INTO `wp_wc_product_meta_lookup` VALUES (553, NULL, 0, 0, 896.0000, 896.0000, 0, NULL, 'instock', 0, 0.00, 0, 'taxable', '');
-INSERT INTO `wp_wc_product_meta_lookup` VALUES (609, '23', 0, 0, 8.4000, 8.4000, 1, NULL, 'instock', 0, 0.00, 1, 'taxable', '');
-INSERT INTO `wp_wc_product_meta_lookup` VALUES (610, '0', 0, 0, 29.3200, 29.3200, 1, NULL, '10', 0, 9.99, 10, '10', '10');
-INSERT INTO `wp_wc_product_meta_lookup` VALUES (612, '15', 0, 0, 29.4000, 29.4000, 1, NULL, '15', 0, 9.99, 15, '15', '15');
+INSERT INTO `wp_wc_product_meta_lookup` VALUES (609, '0', 0, 0, 8.4000, 8.4000, 1, 0, 'instock', 0, 0.00, 1, 'taxable', '');
+INSERT INTO `wp_wc_product_meta_lookup` VALUES (610, '0', 0, 0, 29.3200, 29.3200, 1, 0, '10', 0, 9.99, 10, '10', '10');
+INSERT INTO `wp_wc_product_meta_lookup` VALUES (612, '0', 0, 0, 29.4000, 29.4000, 1, 0, '15', 0, 9.99, 15, '15', '15');
 
 -- ----------------------------
 -- View structure for view_info_sku
 -- ----------------------------
 DROP VIEW IF EXISTS `view_info_sku`;
-CREATE ALGORITHM = UNDEFINED DEFINER = `root`@`localhost` SQL SECURITY DEFINER VIEW `view_info_sku` AS select `T0`.`product_id` AS `ID`,(select `T2`.`Codigo` from `view_post_id_sku_codigo` `T2` where (`T2`.`ID` = `T0`.`product_id`)) AS `Codigo`,(select `T1`.`post_title` from `wp_posts` `T1` where (`T1`.`ID` = `T0`.`product_id`)) AS `Nombre`,`T0`.`sku` AS `sku`,`T0`.`max_price` AS `Precio`,`T0`.`stock_status` AS `stock_status` from `wp_wc_product_meta_lookup` `T0` where (`T0`.`sku` > 0) ;
+CREATE ALGORITHM = UNDEFINED DEFINER = `root`@`localhost` SQL SECURITY DEFINER VIEW `view_info_sku` AS SELECT
+	`T0`.`product_id` AS `ID`,
+	( SELECT `T2`.`Codigo` FROM `view_post_id_sku_codigo` `T2` WHERE ( `T2`.`ID` = `T0`.`product_id` ) ) AS `Codigo`,
+	( SELECT `T1`.`post_title` FROM `wp_posts` `T1` WHERE ( `T1`.`ID` = `T0`.`product_id` ) ) AS `Nombre`,
+	`T0`.`stock_quantity` AS `stock_quantity`,
+	`T0`.`max_price` AS `Precio`,
+	`T0`.`stock_status` AS `stock_status` 
+FROM
+	`wp_wc_product_meta_lookup` `T0` 
+WHERE
+	( `T0`.`sku` >= 0 ) ;
 
 -- ----------------------------
 -- View structure for view_post_id_sku_codigo
